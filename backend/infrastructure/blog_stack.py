@@ -49,7 +49,7 @@ class BlogStack(Stack):
         blog_table.grant_read_write_data(blog_lambda)
 
         # 4. Create HTTP API Gateway
-        http_api = apigwv2.HttpApi(self, "BlogApi", title="Blog API")
+        http_api = apigwv2.HttpApi(self, "BlogApi", api_name="Blog API")
 
         # 5. Add a Route
         http_api.add_routes(
