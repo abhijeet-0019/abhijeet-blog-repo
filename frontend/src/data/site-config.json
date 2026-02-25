@@ -1,0 +1,13 @@
+{
+  "name": "Abhijeet",
+  "title": "Backend Developer • AWS Enthusiast",
+  "description": "Building scalable cloud solutions and sharing knowledge through code and writing.",
+  "email": "abhijeet@example.com",
+  "social": {
+    "github": "https://github.com/abhijeet",
+    "linkedin": "https://linkedin.com/in/abhijeet",
+    "twitter": ""
+  },
+  "resumePdf": "/resume.pdf",
+  "apiUrl": ""
+}

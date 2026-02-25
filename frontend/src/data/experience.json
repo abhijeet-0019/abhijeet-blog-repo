@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Backend Developer",
+    "company": "Your Company",
+    "location": "Remote",
+    "period": "2023 - Present",
+    "description": "Building serverless applications on AWS, designing scalable APIs, and implementing CI/CD pipelines.",
+    "highlights": [
+      "Developed serverless APIs using AWS Lambda and API Gateway",
+      "Implemented infrastructure as code with AWS CDK",
+      "Set up automated deployment pipelines with GitHub Actions"
+    ]
+  },
+  {
+    "title": "Software Developer",
+    "company": "Previous Company",
+    "location": "City, Country",
+    "period": "2021 - 2023",
+    "description": "Full-stack development with focus on backend services and database design.",
+    "highlights": [
+      "Designed and implemented RESTful APIs",
+      "Optimized database queries for improved performance",
+      "Collaborated with cross-functional teams on product features"
+    ]
+  }
+]

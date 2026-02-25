@@ -1,0 +1,18 @@
+[
+  {
+    "category": "Cloud & Infrastructure",
+    "items": ["AWS (Lambda, DynamoDB, API Gateway, CDK)", "Serverless Architecture", "Infrastructure as Code"]
+  },
+  {
+    "category": "Backend Development",
+    "items": ["Python", "Node.js", "REST APIs", "Microservices"]
+  },
+  {
+    "category": "DevOps & Tools",
+    "items": ["Git", "GitHub Actions", "Docker", "CI/CD Pipelines"]
+  },
+  {
+    "category": "Databases",
+    "items": ["DynamoDB", "PostgreSQL", "MongoDB", "Redis"]
+  }
+]

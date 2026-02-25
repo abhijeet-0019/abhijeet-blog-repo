@@ -1,0 +1,5 @@
+[
+  { "id": "tech", "label": "Tech", "color": "#F59E0B" },
+  { "id": "sports", "label": "Sports", "color": "#10B981" },
+  { "id": "general", "label": "General", "color": "#6B7280" }
+]

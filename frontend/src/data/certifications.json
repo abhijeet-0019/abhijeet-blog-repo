@@ -1,0 +1,16 @@
+[
+  {
+    "name": "AWS Certified Solutions Architect",
+    "issuer": "Amazon Web Services",
+    "date": "2024",
+    "credentialUrl": "",
+    "badgeImage": "/badges/aws-sa.png"
+  },
+  {
+    "name": "AWS Certified Developer",
+    "issuer": "Amazon Web Services",
+    "date": "2023",
+    "credentialUrl": "",
+    "badgeImage": "/badges/aws-dev.png"
+  }
+]

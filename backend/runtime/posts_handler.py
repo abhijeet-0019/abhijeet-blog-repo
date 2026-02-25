@@ -35,6 +35,7 @@ def handler(event, context):
                 'title': body['title'],
                 'author': body.get('author', 'Abhijeet'),
                 'date': body.get('date', '2026-02-24'),
+                'category': body.get('category', 'General'),
                 'summary': body.get('summary', 'Click to read more...')
             }
             

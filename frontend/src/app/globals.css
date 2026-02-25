@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FFFBF5;
+  --foreground: #1a1a1a;
+  --accent: #F59E0B;
+  --accent-hover: #D97706;
+  --muted: #6B7280;
+  --border: #E5E7EB;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-merriweather);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Typography for blog content */
+.prose-blog {
+  font-family: var(--font-serif), Georgia, serif;
+  line-height: 1.8;
+}
+
+.prose-blog h1, .prose-blog h2, .prose-blog h3 {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 600;
+}
+
+/* Link styles */
+a {
+  transition: color 0.2s ease;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--accent);
+  color: white;
+}
