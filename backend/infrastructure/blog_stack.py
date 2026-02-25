@@ -48,8 +48,20 @@ class BlogStack(Stack):
         # 3. Grant Permissions (Least Privilege - Key DVA Topic)
         blog_table.grant_read_write_data(blog_lambda)
 
-        # 4. Create HTTP API Gateway
-        http_api = apigwv2.HttpApi(self, "BlogApi", api_name="Blog API")
+        # 4. Create HTTP API Gateway with CORS
+        http_api = apigwv2.HttpApi(
+            self, "BlogApi",
+            api_name="Blog API",
+            cors_preflight=apigwv2.CorsPreflightOptions(
+                allow_methods=[
+                    apigwv2.CorsHttpMethod.GET,
+                    apigwv2.CorsHttpMethod.POST,
+                    apigwv2.CorsHttpMethod.OPTIONS,
+                ],
+                allow_origins=["*"], # For production, replace with your frontend URL
+                allow_headers=["Content-Type", "Authorization"],
+            )
+        )
 
         # 5. Add a Route
         http_api.add_routes(
