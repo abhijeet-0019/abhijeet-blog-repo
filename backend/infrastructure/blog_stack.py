@@ -1,11 +1,14 @@
+from constructs import Construct
 from aws_cdk import (
     Stack,
     aws_iam as iam,
     aws_dynamodb as dynamodb, # Add this import
+    aws_lambda as _lambda,      # Add this
+    aws_apigatewayv2_alpha as apigwv2, # Add this (Modern HTTP API)
+    aws_apigatewayv2_integrations_alpha as integrations, # Add this
     RemovalPolicy,            # Add this import
     CfnOutput
 )
-from constructs import Construct
 
 class BlogStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
@@ -30,6 +33,32 @@ class BlogStack(Stack):
         )
 
         CfnOutput(self, "TableName", value=blog_table.table_name)
+
+        # 2. Create the Lambda Function
+        blog_lambda = _lambda.Function(
+            self, "BlogHandler",
+            runtime=_lambda.Runtime.PYTHON_3_11,
+            handler="posts_handler.handler",
+            code=_lambda.Code.from_asset("runtime"), # Points to our folder
+            environment={
+                "TABLE_NAME": blog_table.table_name
+            }
+        )
+
+        # 3. Grant Permissions (Least Privilege - Key DVA Topic)
+        blog_table.grant_read_write_data(blog_lambda)
+
+        # 4. Create HTTP API Gateway
+        http_api = apigwv2.HttpApi(self, "BlogApi", title="Blog API")
+
+        # 5. Add a Route
+        http_api.add_routes(
+            path="/posts",
+            methods=[apigwv2.HttpMethod.GET, apigwv2.HttpMethod.POST],
+            integration=integrations.HttpLambdaIntegration("LambdaIntegration", blog_lambda)
+        )
+
+        CfnOutput(self, "ApiUrl", value=http_api.api_endpoint)
 
         account_id = Stack.of(self).account
         
