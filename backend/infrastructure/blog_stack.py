@@ -1,6 +1,8 @@
 from aws_cdk import (
     Stack,
     aws_iam as iam,
+    aws_dynamodb as dynamodb, # Add this import
+    RemovalPolicy,            # Add this import
     CfnOutput
 )
 from constructs import Construct
@@ -8,6 +10,26 @@ from constructs import Construct
 class BlogStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
+
+        # 1. Define the DynamoDB Table
+        blog_table = dynamodb.Table(
+            self, "BlogTable",
+            partition_key=dynamodb.Attribute(
+                name="PK", 
+                type=dynamodb.AttributeType.STRING
+            ),
+            sort_key=dynamodb.Attribute(
+                name="SK", 
+                type=dynamodb.AttributeType.STRING
+            ),
+            billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
+            # For a personal project, we want to delete the table if we destroy the stack
+            removal_policy=RemovalPolicy.DESTROY, 
+            # This is good practice for DVA exam: encryption at rest
+            encryption=dynamodb.TableEncryption.AWS_MANAGED
+        )
+
+        CfnOutput(self, "TableName", value=blog_table.table_name)
 
         account_id = Stack.of(self).account
         
