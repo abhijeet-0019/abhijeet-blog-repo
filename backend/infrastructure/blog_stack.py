@@ -2,12 +2,17 @@ from constructs import Construct
 from aws_cdk import (
     Stack,
     aws_iam as iam,
-    aws_dynamodb as dynamodb, # Add this import
-    aws_lambda as _lambda,      # Add this
-    aws_apigatewayv2_alpha as apigwv2, # Add this (Modern HTTP API)
-    aws_apigatewayv2_integrations_alpha as integrations, # Add this
-    RemovalPolicy,            # Add this import
-    CfnOutput
+    aws_dynamodb as dynamodb,
+    aws_lambda as _lambda,
+    aws_apigatewayv2_alpha as apigwv2,
+    aws_apigatewayv2_integrations_alpha as integrations,
+    aws_s3 as s3,
+    aws_s3_deployment as s3_deploy,
+    aws_cloudfront as cloudfront,
+    aws_cloudfront_origins as origins,
+    RemovalPolicy,
+    CfnOutput,
+    Duration
 )
 
 class BlogStack(Stack):
@@ -71,6 +76,82 @@ class BlogStack(Stack):
         )
 
         CfnOutput(self, "ApiUrl", value=http_api.api_endpoint)
+
+        # ==========================================
+        # FRONTEND HOSTING (S3 + CloudFront)
+        # ==========================================
+
+        # 6. Create S3 Bucket for Frontend
+        frontend_bucket = s3.Bucket(
+            self, "FrontendBucket",
+            website_index_document="index.html",
+            website_error_document="404.html",
+            public_read_access=True,
+            block_public_access=s3.BlockPublicAccess(
+                block_public_acls=False,
+                block_public_policy=False,
+                ignore_public_acls=False,
+                restrict_public_buckets=False
+            ),
+            removal_policy=RemovalPolicy.DESTROY,
+            auto_delete_objects=True,
+            cors=[
+                s3.CorsRule(
+                    allowed_methods=[s3.HttpMethods.GET, s3.HttpMethods.HEAD],
+                    allowed_origins=["*"],
+                    allowed_headers=["*"]
+                )
+            ]
+        )
+
+        # 7. Deploy Frontend Files to S3
+        frontend_deployment = s3_deploy.BucketDeployment(
+            self, "DeployFrontend",
+            sources=[s3_deploy.Source.asset("../frontend/out")],
+            destination_bucket=frontend_bucket,
+            # Cache control for static assets
+            cache_control=[
+                s3_deploy.CacheControl.max_age(Duration.days(365)),
+                s3_deploy.CacheControl.must_revalidate()
+            ],
+            # Prune old files when redeploying
+            prune=True
+        )
+
+        # 8. Create CloudFront Distribution
+        distribution = cloudfront.Distribution(
+            self, "FrontendDistribution",
+            default_behavior=cloudfront.BehaviorOptions(
+                origin=origins.S3Origin(frontend_bucket),
+                viewer_protocol_policy=cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+                allowed_methods=cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
+                cached_methods=cloudfront.CachedMethods.CACHE_GET_HEAD_OPTIONS,
+                cache_policy=cloudfront.CachePolicy.CACHING_OPTIMIZED,
+                compress=True
+            ),
+            default_root_object="index.html",
+            error_responses=[
+                cloudfront.ErrorResponse(
+                    http_status=404,
+                    response_http_status=200,
+                    response_page_path="/index.html",
+                    ttl=Duration.minutes(5)
+                ),
+                cloudfront.ErrorResponse(
+                    http_status=403,
+                    response_http_status=200,
+                    response_page_path="/index.html",
+                    ttl=Duration.minutes(5)
+                )
+            ],
+            price_class=cloudfront.PriceClass.PRICE_CLASS_100,  # Use only North America & Europe
+            comment="Blog Frontend Distribution"
+        )
+
+        # Output CloudFront and S3 URLs
+        CfnOutput(self, "WebsiteURL", value=f"https://{distribution.distribution_domain_name}")
+        CfnOutput(self, "S3BucketName", value=frontend_bucket.bucket_name)
+        CfnOutput(self, "CloudFrontDistributionId", value=distribution.distribution_id)
 
         account_id = Stack.of(self).account
         

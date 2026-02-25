@@ -1,11 +1,28 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Github, Linkedin } from "lucide-react";
 import siteConfig from "@/data/site-config.json";
 import categories from "@/data/categories.json";
 import { getPosts } from "@/lib/api";
+import { BlogPost } from "@/types";
 
-export default async function Home() {
-  const posts = await getPosts();
+export default function Home() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadPosts() {
+      console.log("🏠 Homepage: Loading posts...");
+      const data = await getPosts();
+      console.log("🏠 Homepage: Received posts:", data.length);
+      setPosts(data);
+      setLoading(false);
+    }
+    loadPosts();
+  }, []);
+
   const latestPosts = posts.slice(0, 3);
 
   const getCategoryLabel = (categoryId: string) => {
@@ -67,33 +84,40 @@ export default async function Home() {
           <h2 className="text-sm font-medium text-[var(--muted)] uppercase tracking-wider mb-6">
             Latest from the blog
           </h2>
-          <ul className="space-y-4">
-            {latestPosts.map((post) => (
-              <li key={post.id}>
-                <Link
-                  href={`/blog/${post.id}`}
-                  className="group flex items-center gap-3"
-                >
-                  <ArrowRight 
-                    size={16} 
-                    className="text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors flex-shrink-0" 
-                  />
-                  <span className="text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors">
-                    {post.title}
-                  </span>
-                  <span
-                    className="text-xs px-2 py-0.5 rounded-full ml-auto flex-shrink-0"
-                    style={{ 
-                      backgroundColor: `${getCategoryColor(post.category)}20`,
-                      color: getCategoryColor(post.category)
-                    }}
+          {loading ? (
+            <p className="text-[var(--muted)]">Loading posts...</p>
+          ) : latestPosts.length === 0 ? (
+            <p className="text-[var(--muted)]">No posts yet.</p>
+          ) : (
+            <ul className="space-y-4">
+              {latestPosts.map((post) => (
+                <li key={post.id}>
+                  <Link
+                    href={`/blog/${post.id}`}
+                    className="group flex items-center gap-3"
                   >
-                    {getCategoryLabel(post.category)}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                    <ArrowRight 
+                      size={16} 
+                      className="text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors flex-shrink-0" 
+                    />
+                    <span className="text-[var(--foreground)] group-hover:text-[var(--accent)] transition-colors">
+                      {post.title}
+                    </span>
+                    <span
+                      className="text-xs px-2 py-0.5 rounded-full ml-auto flex-shrink-0"
+                      style={{ 
+                        backgroundColor: `${getCategoryColor(post.category)}20`,
+                        color: getCategoryColor(post.category)
+                      }}
+                    >
+                      {getCategoryLabel(post.category)}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+          
           
           <Link
             href="/blog"

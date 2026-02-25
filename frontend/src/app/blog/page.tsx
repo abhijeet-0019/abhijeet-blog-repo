@@ -14,7 +14,9 @@ export default function BlogPage() {
 
   useEffect(() => {
     async function loadPosts() {
+      console.log("📄 Blog page: Loading posts...");
       const data = await getPosts();
+      console.log("📄 Blog page: Received posts:", data.length);
       setPosts(data);
       setLoading(false);
     }

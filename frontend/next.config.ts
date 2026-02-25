@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export',  // Enable static export for S3 hosting
+  images: {
+    unoptimized: true,  // S3 can't optimize images dynamically
+  },
+  // Optional: Add a custom base path if deploying to a subdirectory
+  // basePath: '/blog',
 };
 
 export default nextConfig;
