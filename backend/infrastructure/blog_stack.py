@@ -104,21 +104,7 @@ class BlogStack(Stack):
             ]
         )
 
-        # 7. Deploy Frontend Files to S3
-        frontend_deployment = s3_deploy.BucketDeployment(
-            self, "DeployFrontend",
-            sources=[s3_deploy.Source.asset("../frontend/out")],
-            destination_bucket=frontend_bucket,
-            # Cache control for static assets
-            cache_control=[
-                s3_deploy.CacheControl.max_age(Duration.days(365)),
-                s3_deploy.CacheControl.must_revalidate()
-            ],
-            # Prune old files when redeploying
-            prune=True
-        )
-
-        # 8. Create CloudFront Distribution
+        # 7. Create CloudFront Distribution (before deployment for invalidation)
         distribution = cloudfront.Distribution(
             self, "FrontendDistribution",
             default_behavior=cloudfront.BehaviorOptions(
@@ -148,10 +134,32 @@ class BlogStack(Stack):
             comment="Blog Frontend Distribution"
         )
 
-        # Output CloudFront and S3 URLs
+        # 8. Deploy Frontend Files to S3 with CloudFront invalidation
+        frontend_deployment = s3_deploy.BucketDeployment(
+            self, "DeployFrontend",
+            sources=[s3_deploy.Source.asset("../frontend/out")],
+            destination_bucket=frontend_bucket,
+            distribution=distribution,  # Auto-invalidate CloudFront
+            distribution_paths=["/*"],  # Invalidate all paths
+            # Cache control for static assets
+            cache_control=[
+                s3_deploy.CacheControl.max_age(Duration.days(365)),
+                s3_deploy.CacheControl.must_revalidate()
+            ],
+            # Prune old files when redeploying
+            prune=True
+        )
+
+        # ==========================================
+        # OUTPUT CLOUDFRONT AND S3 URLS
+        # ==========================================
         CfnOutput(self, "WebsiteURL", value=f"https://{distribution.distribution_domain_name}")
         CfnOutput(self, "S3BucketName", value=frontend_bucket.bucket_name)
         CfnOutput(self, "CloudFrontDistributionId", value=distribution.distribution_id)
+
+        # ==========================================
+        # GITHUB ACTIONS IAM ROLE
+        # ==========================================
 
         account_id = Stack.of(self).account
         
