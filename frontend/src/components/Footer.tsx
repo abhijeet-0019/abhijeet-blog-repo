@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="max-w-3xl mx-auto px-6 py-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[var(--muted)] text-sm">
-            © {currentYear} {siteConfig.name}. All rights reserved.
+            © {currentYear} {siteConfig.displayName}. All rights reserved.
           </p>
           
           <div className="flex items-center gap-4">

@@ -66,7 +66,7 @@ export default function BlogPage() {
       <div className="flex flex-wrap gap-2 mb-10 border-b border-[var(--border)] pb-4">
         <button
           onClick={() => setActiveCategory("all")}
-          className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+          className={`px-3 py-1.5 text-sm rounded-md transition-colors cursor-pointer ${
             activeCategory === "all"
               ? "bg-[var(--accent)] text-white"
               : "text-[var(--muted)] hover:text-[var(--foreground)]"
@@ -78,7 +78,7 @@ export default function BlogPage() {
           <button
             key={cat.id}
             onClick={() => setActiveCategory(cat.id)}
-            className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+            className={`px-3 py-1.5 text-sm rounded-md transition-colors cursor-pointer ${
               activeCategory === cat.id
                 ? "text-white"
                 : "text-[var(--muted)] hover:text-[var(--foreground)]"

@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Serverless Cloud Blog Platform",
+    "type": "Full-stack Serverless",
+    "description": "Production-ready, full-stack serverless blog platform using AWS CDK (Python) with strong focus on security, scalability, and DevOps automation.",
+    "repoUrl": "https://github.com/abhijeet-0019/abhijeet-blog-repo",
+    "highlights": [
+      "Architected multi-environment (Dev/Prod) cloud infrastructure using AWS CDK v2",
+      "Implemented DynamoDB Single-Table Design for optimized data modeling",
+      "Built RESTful HTTP APIs using AWS Lambda (Python) and API Gateway",
+      "Established keyless CI/CD pipeline using GitHub Actions with OIDC authentication",
+      "Deployed frontend via S3 and CloudFront CDN for global content delivery"
+    ],
+    "techStack": ["AWS CDK", "Lambda", "API Gateway", "DynamoDB", "S3", "CloudFront", "GitHub Actions", "Python"]
+  },
+  {
+    "name": "PlaceComm Automation",
+    "type": "Full-stack Web Platform",
+    "description": "Official placement automation portal for the Training & Placement Office of M.B.M. Engineering College. Automated multiple stages of campus recruitment lifecycle.",
+    "repoUrl": "https://github.com/abhijeet-0019/MAJOR-PROJECT-24",
+    "highlights": [
+      "Automated campus recruitment workflow for placement office",
+      "Planned advanced analytics integration for data-driven decision-making",
+      "Managed student and company data efficiently"
+    ],
+    "techStack": ["Next.js", "Directus", "REST APIs"]
+  }
+]

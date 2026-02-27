@@ -36,11 +36,29 @@ export interface Certification {
   badgeImage: string;
 }
 
+export interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+  gpa: string;
+  achievements: string[];
+}
+
+export interface Project {
+  name: string;
+  type: string;
+  description: string;
+  repoUrl: string;
+  highlights: string[];
+  techStack: string[];
+}
+
 export interface SiteConfig {
   name: string;
   title: string;
   description: string;
   email: string;
+  phone: string;
   social: {
     github: string;
     linkedin: string;

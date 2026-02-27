@@ -1,18 +1,18 @@
 [
   {
     "category": "Cloud & Infrastructure",
-    "items": ["AWS (Lambda, DynamoDB, API Gateway, CDK)", "Serverless Architecture", "Infrastructure as Code"]
+    "items": ["AWS (EC2, S3, Lambda, RDS, DynamoDB, API Gateway, IAM, CloudFront, Step Functions, SNS, SQS, EventBridge, CloudWatch, ECS)", "AWS CDK", "Infrastructure as Code", "Linux (CLI)"]
   },
   {
     "category": "Backend Development",
-    "items": ["Python", "Node.js", "REST APIs", "Microservices"]
-  },
-  {
-    "category": "DevOps & Tools",
-    "items": ["Git", "GitHub Actions", "Docker", "CI/CD Pipelines"]
+    "items": ["Python", "REST APIs", "Microservices Architecture", "UNIX"]
   },
   {
     "category": "Databases",
-    "items": ["DynamoDB", "PostgreSQL", "MongoDB", "Redis"]
+    "items": ["DynamoDB", "PostgreSQL", "MySQL"]
+  },
+  {
+    "category": "Tools & DevOps",
+    "items": ["GitHub", "GitLab", "Postman", "DBeaver", "PyCharm", "IntelliJ IDEA", "VS Code", "Android Studio", "Arduino"]
   }
 ]

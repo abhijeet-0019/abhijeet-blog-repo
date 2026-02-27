@@ -1,16 +1,37 @@
 [
   {
-    "name": "AWS Certified Solutions Architect",
+    "name": "AWS Certified Solutions Architect - Associate",
     "issuer": "Amazon Web Services",
-    "date": "2024",
-    "credentialUrl": "",
+    "date": "2026",
+    "credentialUrl": "https://www.credly.com/badges/6ed8b3b9-1b99-463b-a5e1-0fee554d47d2/public_url",
     "badgeImage": "/badges/aws-sa.png"
   },
   {
-    "name": "AWS Certified Developer",
+    "name": "AWS Certified Cloud Practitioner",
     "issuer": "Amazon Web Services",
+    "date": "2024",
+    "credentialUrl": "https://www.credly.com/badges/6ed8b3b9-1b99-463b-a5e1-0fee554d47d2/public_url",
+    "badgeImage": "/badges/aws-ccp.png"
+  },
+  {
+    "name": "Networking Essentials",
+    "issuer": "Cisco",
     "date": "2023",
-    "credentialUrl": "",
-    "badgeImage": "/badges/aws-dev.png"
+    "credentialUrl": "https://drive.google.com/file/d/1yawHGhZlubY50EiE3B2rYO7svMg0aEto/view",
+    "badgeImage": "/badges/cisco.png"
+  },
+  {
+    "name": "Back End Development & APIs",
+    "issuer": "freeCodeCamp",
+    "date": "2023",
+    "credentialUrl": "https://www.freecodecamp.org/certification/abhijeet0019/back-end-development-and-apis",
+    "badgeImage": "/badges/freecodecamp.png"
+  },
+  {
+    "name": "JavaScript Algorithms & Data Structures",
+    "issuer": "freeCodeCamp",
+    "date": "2023",
+    "credentialUrl": "https://www.freecodecamp.org/certification/abhijeet0019/javascript-algorithms-and-data-structures",
+    "badgeImage": "/badges/freecodecamp.png"
   }
 ]

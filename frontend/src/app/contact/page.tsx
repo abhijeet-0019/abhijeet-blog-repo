@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail, Github, Linkedin, Send, CheckCircle } from "lucide-react";
+import { ArrowLeft, Mail, Github, Linkedin, Phone, Send, CheckCircle } from "lucide-react";
 import siteConfig from "@/data/site-config.json";
 
 export default function ContactPage() {
@@ -125,7 +125,7 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-[var(--accent)] text-white rounded-lg hover:bg-[var(--accent-hover)] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-[var(--accent)] text-white rounded-lg hover:bg-[var(--accent-hover)] transition-colors cursor-pointer"
               >
                 <Send size={18} />
                 Send Message
@@ -154,6 +154,21 @@ export default function ContactPage() {
               </div>
             </Link>
 
+            {siteConfig.phone && (
+              <Link
+                href={`tel:${siteConfig.phone}`}
+                className="flex items-center gap-3 p-4 border border-[var(--border)] rounded-lg hover:border-[var(--accent)] transition-colors group"
+              >
+                <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-[var(--accent)] group-hover:bg-opacity-10 transition-colors">
+                  <Phone size={20} className="text-[var(--muted)] group-hover:text-[var(--accent)]" />
+                </div>
+                <div>
+                  <p className="text-sm text-[var(--muted)]">Phone</p>
+                  <p className="text-[var(--foreground)]">{siteConfig.phone}</p>
+                </div>
+              </Link>
+            )}
+
             {siteConfig.social.github && (
               <Link
                 href={siteConfig.social.github}
@@ -166,7 +181,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-sm text-[var(--muted)]">GitHub</p>
-                  <p className="text-[var(--foreground)]">@abhijeet</p>
+                  <p className="text-[var(--foreground)]">@abhijeet-0019</p>
                 </div>
               </Link>
             )}
@@ -183,7 +198,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-sm text-[var(--muted)]">LinkedIn</p>
-                  <p className="text-[var(--foreground)]">Abhijeet</p>
+                  <p className="text-[var(--foreground)]">Abhijeet Singh Rajpurohit</p>
                 </div>
               </Link>
             )}

@@ -1,8 +1,12 @@
 {
-  "name": "Abhijeet",
-  "title": "Backend Developer • AWS Enthusiast",
-  "description": "Building scalable cloud solutions and sharing knowledge through code and writing.",
-  "email": "abhijeetsinghbhainser@example.com",
+  "displayName": "Abhijeet",
+  "fullName": "Abhijeet Singh Rajpurohit",
+  "tagline": "Engineer. Learner",
+  "title": "AWS Developer • Cloud Solutions Architect • Backend Engineer",
+  "aboutMe": "",
+  "description": "AWS Certified Solutions Architect with strong experience in designing, deploying, and optimizing scalable backend and cloud-native systems. Building secure, cost-efficient, high-availability architectures for fintech and enterprise platforms.",
+  "email": "abhijeet.singh.bhainser@gmail.com",
+  "phone": "+91-8209868716",
   "social": {
     "github": "https://github.com/abhijeet-0019",
     "linkedin": "https://linkedin.com/in/abhijeet-singh-rajpurohit",

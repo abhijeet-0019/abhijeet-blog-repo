@@ -1,0 +1,27 @@
+[
+  {
+    "degree": "Bachelor of Engineering (Computer Engineering)",
+    "institution": "M.B.M. Engineering College, Jodhpur",
+    "period": "2020 - 2024",
+    "gpa": "9.0 CGPA",
+    "achievements": [
+      "Training & Placement Cell Coordinator (Jun 2023 - Jun 2024)",
+      "Debating Club Coordinator (Nov 2022 - Jan 2024)",
+      "Student Volunteer - Training & Placement Office (May 2022 - Jun 2023)"
+    ]
+  },
+  {
+    "degree": "Class 12th (RBSE)",
+    "institution": "Senior Secondary School",
+    "period": "2020",
+    "gpa": "95.40%",
+    "achievements": []
+  },
+  {
+    "degree": "Class 10th (CBSE)",
+    "institution": "Secondary School",
+    "period": "2018",
+    "gpa": "10.0 CGPA",
+    "achievements": []
+  }
+]

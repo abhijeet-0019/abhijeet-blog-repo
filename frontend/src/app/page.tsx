@@ -39,38 +39,39 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center justify-center px-6 py-16">
       <div className="max-w-2xl w-full">
         {/* Hero Section */}
-        <header className="text-center mb-12">
+        <header className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-[var(--foreground)] mb-3">
-            {siteConfig.name}
+            {siteConfig.displayName}
           </h1>
-          <p className="text-lg text-[var(--muted)]">
-            {siteConfig.title}
+          <p className="text-lg text-[var(--muted)] italic">
+            {siteConfig.tagline}
           </p>
         </header>
+
+        {/* About Me Section */}
+        <section className="text-center mb-10">
+          <p className="text-[var(--foreground)] leading-relaxed max-w-xl mx-auto">
+            {siteConfig.aboutMe}
+          </p>
+        </section>
 
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-6 mb-12 text-base">
           <Link 
             href="/blog" 
-            className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors"
+            className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors cursor-pointer"
           >
             Blog
           </Link>
           <Link 
             href="/about" 
-            className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors"
-          >
-            About
-          </Link>
-          <Link 
-            href="/resume" 
-            className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors"
+            className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors cursor-pointer"
           >
             Resume
           </Link>
           <Link 
             href="/contact" 
-            className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors"
+            className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors cursor-pointer"
           >
             Contact
           </Link>

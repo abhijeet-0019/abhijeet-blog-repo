@@ -18,7 +18,7 @@ const merriweather = Merriweather({
 });
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} | ${siteConfig.title}`,
+  title: `${siteConfig.fullName} | ${siteConfig.title}`,
   description: siteConfig.description,
 };
 
