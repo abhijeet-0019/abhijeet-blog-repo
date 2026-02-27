@@ -1,9 +1,10 @@
-name: Deploy Backend
+name: Deploy Blog
 on:
   push:
     branches: [ main ]
     paths:
-      - 'backend/**' # Only run if backend code changes
+      - 'backend/**'
+      - 'frontend/**'
 
 permissions:
   id-token: write   # Required for OIDC
